@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Epic Rural Suite - 30 Slides</title>
+    <title>The Rural Suite - Interactive Presentation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;500;700;800&display=swap" rel="stylesheet">
@@ -91,16 +91,9 @@
 
         .slide-split { display: grid; grid-template-columns: 1fr 1.2fr; height: 100%; }
         
-        /* Fallback pattern for images */
         .split-img {
             background-size: cover; background-position: center; height: 100%;
             background-color: var(--primary);
-            background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 20px, transparent 20px, transparent 40px);
-        }
-        .split-img.alt {
-            background-color: var(--accent);
-            background-image: radial-gradient(circle at 10px 10px, rgba(255,255,255,0.2) 2px, transparent 0);
-            background-size: 20px 20px;
         }
 
         .split-content {
@@ -130,7 +123,6 @@
         .slide-glass {
             background-size: cover; background-position: center; padding: 80px; display: flex; align-items: center;
             background-color: var(--dark);
-            background-image: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
         }
         .glass-box {
             background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); padding: 50px;
@@ -142,531 +134,306 @@
             border-radius: 30px; font-weight: 600; font-size: 16px; margin-bottom: 20px; text-transform: uppercase;
         }
 
-        /* --- AI ASSISTANT STYLES --- */
-        .ai-fab {
-            position: absolute; bottom: 30px; left: 40px; width: 60px; height: 60px; border-radius: 50%;
-            background: linear-gradient(135deg, #a8ff78 0%, #78ffd6 100%); border: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; z-index: 1000;
-            display: flex; justify-content: center; align-items: center; font-size: 24px; transition: transform 0.3s;
-        }
-        .ai-fab:hover { transform: scale(1.1) rotate(10deg); }
-        .ai-panel {
-            position: absolute; top: 0; left: -400px; width: 380px; height: 100%;
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px);
-            box-shadow: 10px 0 30px rgba(0,0,0,0.2); z-index: 999; transition: left 0.4s;
-            display: flex; flex-direction: column; padding: 30px; border-right: 1px solid rgba(255,255,255,0.5);
-        }
-        .ai-panel.open { left: 0; }
-        .ai-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .close-ai { background: none; border: none; font-size: 20px; cursor: pointer; color: #888; }
-        .chat-box { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; }
-        .chat-msg { padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.5; font-family: 'Poppins', sans-serif; max-width: 90%; }
-        .chat-msg.bot { background: #f0fdf4; align-self: flex-start; border-bottom-left-radius: 0; }
-        .chat-msg.user { background: var(--primary); color: white; align-self: flex-end; border-bottom-right-radius: 0; }
-        .ai-actions { display: flex; flex-direction: column; gap: 10px; }
-        .btn-trivia { background: #fff3cd; border: 1px solid #ffeeba; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600; }
-        .ai-input-group { display: flex; gap: 10px; }
-        .ai-input-group input { flex-grow: 1; padding: 10px; border: 1px solid #ccc; border-radius: 8px; }
-        .ai-input-group button { background: var(--primary); color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; }
-        .loader { display: none; align-self: flex-start; padding: 10px; }
-        .loader span { display: inline-block; width: 8px; height: 8px; background-color: var(--primary); border-radius: 50%; margin: 0 3px; animation: bounce 1.4s infinite both; }
-        .loader span:nth-child(1) { animation-delay: -0.32s; } .loader span:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+        ul { list-style: none; margin-top: 20px; }
+        li { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; }
+        li::before { content: '✔'; color: var(--accent); font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div class="presentation">
-        
         <!-- Controls -->
         <div class="controls">
             <div class="slide-counter"><span id="current-num">1</span> / <span id="total-num">30</span></div>
-            <button class="btn-nav" onclick="prevSlide()" title="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
-            <button class="btn-nav" onclick="nextSlide()" title="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
+            <button class="btn-nav" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="btn-nav" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
 
-        <!-- SLIDES 1-10: Introduction & Characteristics -->
-        <div class="slide slide-hero active" style="background-image: linear-gradient(rgba(27,67,50,0.8), rgba(27,67,50,0.8)), url('https://images.unsplash.com/photo-1518552796181-4229124430f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80');">
+        <!-- 1. Hero -->
+        <div class="slide slide-hero active" style="background-image: linear-gradient(rgba(27,67,50,0.85), rgba(27,67,50,0.85)), url('https://images.unsplash.com/photo-1518552796181-4229124430f1?auto=format&fit=crop&w=1280&q=80');">
             <h1>The Rural Suite</h1>
             <h2>Barrio & Lowland Dances</h2>
         </div>
 
+        <!-- 2. Intro -->
         <div class="slide slide-split">
-            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1589363460779-cb71b86c31e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1589363460779-cb71b86c31e6?auto=format&fit=crop&w=800&q=80');"></div>
             <div class="split-content">
-                <h2 class="section-title">What is the Rural Suite?</h2>
-                <p>The Rural Suite, also known as Barrio Dances, represents the beautiful simplicity of the Philippine provinces.</p>
-                <p>These dances are rooted in the heart of the common Filipino people, highlighting the joy found in hard work, nature, and community.</p>
+                <h2 class="section-title">Spirit of the Countryside</h2>
+                <p>The Rural Suite represents the life of the Filipino peasants living in the lowlands.</p>
+                <p>These dances are celebrations of daily work, faith, and the spirit of the barrio.</p>
             </div>
         </div>
 
-        <div class="slide slide-glass" style="background-image: url('https://images.unsplash.com/photo-1533130061792-64b345e4a833?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80');">
-            <div class="glass-box">
-                <span class="tag">The Core Identity</span>
-                <h2>The Spirit of the Barrio</h2>
-                <p>Unlike the formal, Spanish-influenced Maria Clara suite, Rural dances do not focus on strict etiquette or high-society courtship.</p>
-                <p>Instead, they are celebrations of a bountiful harvest, a successful fishing trip, or simply the joy of being together after a long day of labor.</p>
-            </div>
-        </div>
-
+        <!-- 3. Characteristics -->
         <div class="slide slide-grid">
             <h2 class="section-title">Suite Characteristics</h2>
             <div class="grid-container">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-face-smile-beam"></i></div>
-                    <div><h3>Lively & Joyful</h3><p>Movements are inherently happy, energetic, and playful, accompanied by wide smiles.</p></div>
+                    <div class="feature-icon"><i class="fa-solid fa-face-smile"></i></div>
+                    <div><h3>Joyful</h3><p>Fast-paced and energetic movements reflecting the optimism of the people.</p></div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-wheat-awn"></i></div>
-                    <div><h3>Labor Inspired</h3><p>Choreography directly mimics everyday provincial tasks like planting or fishing.</p></div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-shoe-prints"></i></div>
-                    <div><h3>Informal Setup</h3><p>Highly accessible and less formal. Dancers often perform barefoot.</p></div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-masks-theater"></i></div>
-                    <div><h3>Fiesta Culture</h3><p>Performed during town fiestas to celebrate a bountiful harvest and give thanks.</p></div>
+                    <div class="feature-icon"><i class="fa-solid fa-seedling"></i></div>
+                    <div><h3>Nature-Based</h3><p>Moves often imitate animals or the swaying of plants in the wind.</p></div>
                 </div>
             </div>
         </div>
 
-        <div class="slide slide-split">
-            <div class="split-content">
-                <h2 class="section-title">Connection to Nature</h2>
-                <p>The props used in these dances reflect what is readily available in the Philippine environment.</p>
-                <p>Bamboo poles, coconut shells, wooden sticks, oil lamps, and clay pots are not just props—they are elements of the earth transformed into art and rhythm.</p>
-            </div>
-            <div class="split-img alt" style="background-image: url('https://images.unsplash.com/photo-1563240619-44ce8ff114e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-        </div>
-
-        <div class="slide slide-glass" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1584985226199-31713e778dd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80'); justify-content: flex-end;">
+        <!-- 4. Glass Intro -->
+        <div class="slide slide-glass" style="background-image: url('https://images.unsplash.com/photo-1533130061792-64b345e4a833?auto=format&fit=crop&w=1280&q=80');">
             <div class="glass-box">
-                <span class="tag">Theme 1</span>
-                <h2>Farming Life</h2>
-                <p>The Philippines is highly agricultural. Many rural dances show the cycle of planting, harvesting, and pounding rice.</p>
-                <p>These dances turn back-breaking labor into synchronized, rhythmic art forms to make the workday feel lighter.</p>
+                <span class="tag">The Core Idea</span>
+                <h2>Celebration of Labor</h2>
+                <p>Most dances in this suite are actually dramatizations of agricultural and fishing work cycles.</p>
             </div>
         </div>
 
-        <div class="slide slide-split">
-            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1516214104703-d2507810168b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="split-content">
-                <h2 class="section-title">Fishing Communities</h2>
-                <p>With over 7,000 islands, coastal life is a major part of the Philippine rural experience.</p>
-                <p>Dances like <em>Oasioas</em> (using lighted lamps in cloths) originated from fishermen celebrating a good catch at sea.</p>
-            </div>
-        </div>
-
+        <!-- 5. Split Content -->
         <div class="slide slide-split">
             <div class="split-content">
-                <h2 class="section-title">The Town Fiesta</h2>
-                <p>The Fiesta is the climax of rural life. Every barrio has a patron saint, and the fiesta is a time of immense celebration.</p>
-                <p>Rural dances take center stage during these events, bringing the entire community to the town plaza to watch, cheer, and dance.</p>
+                <h2 class="section-title">The Community</h2>
+                <p>The Barrio (neighborhood) is the heart of rural life. Dancers often perform in circles to signify unity.</p>
             </div>
-            <div class="split-img alt" style="background-image: url('https://images.unsplash.com/photo-1601058268499-e52658b8bb88?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1563240619-44ce8ff114e9?auto=format&fit=crop&w=800&q=80');"></div>
         </div>
 
-        <div class="slide slide-glass" style="background-image: url('https://images.unsplash.com/photo-1508004526072-8be061309fba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80');">
-            <div class="glass-box">
-                <span class="tag">Key Feature</span>
-                <h2>Barefoot Performance</h2>
-                <p>A defining characteristic of the Rural Suite is that dancers almost always perform barefoot.</p>
-                <p>This is not just for ease of movement; it represents a deep, physical connection to the soil and the earth that sustains them.</p>
-            </div>
-        </div>
-
+        <!-- 6. Traditional Wear -->
         <div class="slide slide-grid">
-            <h2 class="section-title">Wardrobe of the Barrio</h2>
+            <h2 class="section-title">What They Wear</h2>
             <div class="grid-container">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-shirt"></i></div>
-                    <div><h3>Barong Tagalog / Camisa</h3><p>Men wear lightweight, breathable shirts perfect for the tropical heat.</p></div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-hat-cowboy"></i></div>
-                    <div><h3>Salakot</h3><p>Traditional wide-brimmed hats woven from rattan or reeds to block the sun.</p></div>
+                    <div><h3>Camisa de Chino</h3><p>Light cotton shirts worn by men, perfect for the heat.</p></div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-person-dress"></i></div>
-                    <div><h3>Balintawak</h3><p>Women wear colorful, informal dresses with butterfly sleeves and a panuelo (scarf).</p></div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-hand-holding-droplet"></i></div>
-                    <div><h3>Tapis</h3><p>An overskirt or apron wrapped around the waist to protect the dress during work.</p></div>
+                    <div><h3>Balintawak</h3><p>Women's dress with butterfly sleeves and a traditional wrap.</p></div>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDES 11-18: Tinikling Deep Dive -->
-        <div class="slide slide-hero" style="background-image: linear-gradient(rgba(231,111,81,0.7), rgba(231,111,81,0.9)), url('https://images.unsplash.com/photo-1530044955146-24ee263bd391?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80');">
-            <h2 style="color: white; font-size: 40px; margin-bottom: 10px;">Spotlight Dance 1:</h2>
-            <h1 style="color: var(--light); font-size: 110px;">Tinikling</h1>
+        <!-- 7. Tinikling Intro -->
+        <div class="slide slide-hero" style="background-image: linear-gradient(rgba(231,111,81,0.9), rgba(231,111,81,0.9)), url('https://images.unsplash.com/photo-1530044955146-24ee263bd391?auto=format&fit=crop&w=1280&q=80');">
+            <h1>Tinikling</h1>
+            <h2>The National Dance</h2>
         </div>
 
+        <!-- 8. Tikling Bird -->
         <div class="slide slide-split">
-            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1550254478-ead40cc54513?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1444464666168-49b626d01d4c?auto=format&fit=crop&w=800&q=80');"></div>
             <div class="split-content">
-                <h2 class="section-title">The National Dance</h2>
-                <p>Tinikling is arguably the most internationally recognized Philippine folk dance.</p>
-                <p>It originated during the Spanish colonial era in the province of Leyte, Visayas.</p>
+                <h2 class="section-title">The Bird's Inspiration</h2>
+                <p>Named after the "Tikling" bird. The dance imitates the bird dodging bamboo traps in rice fields.</p>
             </div>
         </div>
 
-        <div class="slide slide-glass" style="background-image: url('https://images.unsplash.com/photo-1444464666168-49b626d01d4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80');">
+        <!-- 9. Bamboo Mechanics -->
+        <div class="slide slide-glass" style="background-image: url('https://images.unsplash.com/photo-1588628566587-bf5c2db0714b?auto=format&fit=crop&w=1280&q=80');">
             <div class="glass-box">
-                <span class="tag">The Inspiration</span>
-                <h2>The Tikling Bird</h2>
-                <p>The dance specifically imitates the movements of the <em>tikling</em> bird (a rail bird).</p>
-                <p>These birds were known to wander through tall grass and dodge the bamboo traps set by rice farmers to protect their crops.</p>
+                <h2>The Bamboo Poles</h2>
+                <p>The clashing poles represent the traps, while the dancers represent the birds' agility.</p>
             </div>
         </div>
 
-        <div class="slide slide-split">
-            <div class="split-content">
-                <h2 class="section-title">The Bamboo Poles</h2>
-                <p>Two bamboo poles are tapped against each other and against blocks of wood on the ground, creating a distinctive percussive rhythm.</p>
-                <p>The "clappers" must maintain a perfect beat, otherwise the dancers will get their ankles caught!</p>
-            </div>
-            <div class="split-img alt" style="background-image: url('https://images.unsplash.com/photo-1588628566587-bf5c2db0714b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+        <!-- 10. Maglalatik -->
+        <div class="slide slide-hero" style="background-image: linear-gradient(rgba(176,137,104,0.9), rgba(176,137,104,0.9)), url('https://images.unsplash.com/photo-1610481230107-1600db4da8ce?auto=format&fit=crop&w=1280&q=80');">
+            <h1>Maglalatik</h1>
+            <h2>The War Dance of Latik</h2>
         </div>
 
-        <div class="slide slide-glass" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1510130387422-82ebd43b83c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80'); justify-content: flex-end;">
-            <div class="glass-box">
-                <span class="tag">The Technique</span>
-                <h2>Agility and Grace</h2>
-                <p>Dancers must gracefully and quickly step in and out of the clapping bamboo poles.</p>
-                <p>As the music speeds up, the clapping becomes faster, demanding incredible agility, trust, and stamina from the performers.</p>
-            </div>
-        </div>
-
+        <!-- 11. Coconut Shells -->
         <div class="slide slide-grid">
-            <h2 class="section-title">The Rhythm (The Clappers)</h2>
+            <h2 class="section-title">The Coconut Shells</h2>
             <div class="grid-container">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-1"></i></div>
-                    <div><h3>Count 1</h3><p>The clappers strike the bamboo poles against the wooden blocks on the floor.</p></div>
+                    <div class="feature-icon"><i class="fa-solid fa-drum"></i></div>
+                    <div><h3>Body Percussion</h3><p>Dancers wear coconut shell halves on their chest, back, and knees.</p></div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-2"></i></div>
-                    <div><h3>Count 2</h3><p>They strike the poles against the floor blocks a second time.</p></div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-3"></i></div>
-                    <div><h3>Count 3</h3><p>The clappers lift the poles and strike them violently against each other.</p></div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-shoe-prints"></i></div>
-                    <div><h3>The Dancer's Job</h3><p>The dancer must have their feet OUT of the poles on Count 3!</p></div>
+                    <div class="feature-icon"><i class="fa-solid fa-shield"></i></div>
+                    <div><h3>Mock Battle</h3><p>Shows a fight between Moros and Christians over "latik" (coconut residue).</p></div>
                 </div>
             </div>
         </div>
 
-        <div class="slide slide-split">
-            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1511192336575-5a79af67a629?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="split-content">
-                <h2 class="section-title">The Rondalla Music</h2>
-                <p>Tinikling is accompanied by a traditional string ensemble called the <em>Rondalla</em>.</p>
-                <p>Instruments like the bandurria, octavina, laud, and double bass create a bright, fast-paced melody that drives the dancers.</p>
-            </div>
+        <!-- 12. Pandanggo sa Ilaw -->
+        <div class="slide slide-hero" style="background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1510130387422-82ebd43b83c5?auto=format&fit=crop&w=1280&q=80');">
+            <h1>Pandanggo sa Ilaw</h1>
+            <h2>Dance of Light</h2>
         </div>
 
-        <div class="slide slide-glass" style="background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80');">
-            <div class="glass-box">
-                <span class="tag">Fun Fact</span>
-                <h2>Global Pop Culture</h2>
-                <p>Tinikling has become a global phenomenon! It is frequently taught in physical education classes worldwide to improve coordination.</p>
-                <p>Modern dance crews even perform Tinikling to modern hip-hop and pop beats.</p>
-            </div>
-        </div>
-
-        <!-- SLIDES 19-24: Maglalatik Deep Dive -->
-        <div class="slide slide-hero" style="background-image: linear-gradient(rgba(176,137,104,0.8), rgba(176,137,104,0.9)), url('https://images.unsplash.com/photo-1610481230107-1600db4da8ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80');">
-            <h2 style="color: white; font-size: 40px; margin-bottom: 10px;">Spotlight Dance 2:</h2>
-            <h1 style="color: var(--dark); font-size: 110px;">Maglalatik</h1>
-        </div>
-
+        <!-- 13. Balance -->
         <div class="slide slide-split">
             <div class="split-content">
-                <h2 class="section-title">The Mock Battle</h2>
-                <p>Maglalatik is an indigenous dance from the Philippines in which coconut shell halves are attached to the dancers' hands and bodies.</p>
-                <p>It is uniquely performed entirely by male dancers.</p>
+                <h2 class="section-title">The Art of Balance</h2>
+                <p>Dancers must balance three oil lamps (tinghoy): one on the head and one on each hand.</p>
             </div>
-            <div class="split-img alt" style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80');"></div>
         </div>
 
-        <div class="slide slide-glass" style="background-image: url('https://images.unsplash.com/photo-1533130061792-64b345e4a833?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80'); justify-content: flex-end;">
-            <div class="glass-box">
-                <span class="tag">The Origin</span>
-                <h2>Biñan, Laguna</h2>
-                <p>The dance originated in the town of Biñan in Laguna.</p>
-                <p>It is performed as an offering to San Isidro de Labrador, the patron saint of farmers, during the town fiesta.</p>
-            </div>
+        <!-- 14. Sayaw sa Bangko -->
+        <div class="slide slide-hero" style="background-image: linear-gradient(rgba(45,106,79,0.8), rgba(45,106,79,0.8)), url('https://images.unsplash.com/photo-1526346698789-22fd84314424?auto=format&fit=crop&w=1280&q=80');">
+            <h1>Sayaw sa Bangko</h1>
+            <h2>Dancing on a Bench</h2>
         </div>
 
-        <div class="slide slide-split">
-            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1526346698789-22fd84314424?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="split-content">
-                <h2 class="section-title">The Story of Latik</h2>
-                <p>The dance tells the story of a battle between the Moros and the Christians.</p>
-                <p>What are they fighting over? <em>Latik</em>—a delicious, sweet residue left behind after boiling coconut milk.</p>
-            </div>
-        </div>
-
+        <!-- 15. Bench Skill -->
         <div class="slide slide-grid">
-            <h2 class="section-title">The Four Parts of Maglalatik</h2>
+            <h2 class="section-title">High-Wire Skill</h2>
             <div class="grid-container">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-fist-raised"></i></div>
-                    <div><h3>1. Baligtaran</h3><p>The aggressive preparation and beginning of the mock combat.</p></div>
+                    <div class="feature-icon"><i class="fa-solid fa-arrows-up-down"></i></div>
+                    <div><h3>Narrow Benches</h3><p>Performed on thin wooden benches stacked on top of each other.</p></div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-khanda"></i></div>
-                    <div><h3>2. Palipasan</h3><p>The intense continuation of the fight between the two groups.</p></div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-handshake-angle"></i></div>
-                    <div><h3>3. Paseo</h3><p>The music shifts. This represents the reconciliation and truce.</p></div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-music"></i></div>
-                    <div><h3>4. Escaramusa</h3><p>A joyous, fast-paced final dance to celebrate peace and friendship.</p></div>
+                    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div><h3>Acrobatics</h3><p>Dancers jump and switch places without falling to the ground.</p></div>
                 </div>
             </div>
         </div>
 
-        <div class="slide slide-glass" style="background-image: url('https://images.unsplash.com/photo-1610481230107-1600db4da8ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80');">
+        <!-- 16. Itik-Itik -->
+        <div class="slide slide-hero" style="background-image: linear-gradient(rgba(233,196,106,0.9), rgba(233,196,106,0.9)), url('https://images.unsplash.com/photo-1555850896-591d48c800f4?auto=format&fit=crop&w=1280&q=80');">
+            <h1 style="color: var(--dark);">Itik-Itik</h1>
+            <h2 style="color: var(--text-dark);">The Duck Dance</h2>
+        </div>
+
+        <!-- 17. Duck Movements -->
+        <div class="slide slide-split">
+            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="split-content">
+                <h2 class="section-title">Waddling Fun</h2>
+                <p>The dance mimics a duck's waddle and splashes. Originated from Surigao del Sur.</p>
+            </div>
+        </div>
+
+        <!-- 18. Kuratsa -->
+        <div class="slide slide-hero" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1508004526072-8be061309fba?auto=format&fit=crop&w=1280&q=80');">
+            <h1>Kuratsa</h1>
+            <h2>Visayan Courtship</h2>
+        </div>
+
+        <!-- 19. Courtship -->
+        <div class="slide slide-glass" style="background-image: url('https://images.unsplash.com/photo-1601058268499-e52658b8bb88?auto=format&fit=crop&w=1280&q=80');">
             <div class="glass-box">
-                <span class="tag">The Props</span>
-                <h2>The Coconut Shells</h2>
-                <p>Dancers wear 6-8 coconut shells attached to their shoulders, chest, back, thighs, and knees.</p>
-                <p>By striking the shells on their bodies and the shells of their partners, they act as their own percussion section, driving the entire beat of the dance.</p>
+                <h2>A Playful Chase</h2>
+                <p>A social dance showing the courtship between a rooster and a hen. Very popular in Samar and Leyte.</p>
             </div>
         </div>
 
-        <!-- SLIDES 25-28: Sakuting & Others -->
-        <div class="slide slide-hero" style="background-image: linear-gradient(rgba(231,111,81,0.8), rgba(231,111,81,0.9)), url('https://images.unsplash.com/photo-1503144577413-5a7d0484cefa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80');">
-            <h2 style="color: white; font-size: 40px; margin-bottom: 10px;">Spotlight Dance 3:</h2>
-            <h1 style="color: var(--light); font-size: 110px;">Sakuting</h1>
+        <!-- 20. Sakuting -->
+        <div class="slide slide-hero" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1531835551805-16d8e48bafb4?auto=format&fit=crop&w=1280&q=80');">
+            <h1>Sakuting</h1>
+            <h2>The Stick Dance</h2>
         </div>
 
+        <!-- 21. Stick Battle -->
         <div class="slide slide-split">
             <div class="split-content">
-                <h2 class="section-title">Origin in Abra</h2>
-                <p>Sakuting originated in the province of Abra, located in the northern part of the Philippines.</p>
-                <p>Like Maglalatik, it is a mock combat dance, but it uses wooden sticks instead of coconut shells.</p>
+                <h2 class="section-title">Northern Combat</h2>
+                <p>From Abra. It uses wooden sticks to fight in a rhythmic battle between groups.</p>
             </div>
-            <div class="split-img alt" style="background-image: url('https://images.unsplash.com/photo-1531835551805-16d8e48bafb4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1513297887119-d46091b24bfa?auto=format&fit=crop&w=800&q=80');"></div>
         </div>
 
-        <div class="slide slide-glass" style="justify-content: flex-end; background-image: url('https://images.unsplash.com/photo-1513297887119-d46091b24bfa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80');">
+        <!-- 22. Oasioas -->
+        <div class="slide slide-hero" style="background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&w=1280&q=80');">
+            <h1>Oasioas</h1>
+            <h2>Swinging Lamps</h2>
+        </div>
+
+        <!-- 23. Night Fishing -->
+        <div class="slide slide-glass" style="background-image: url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=1280&q=80');">
             <div class="glass-box">
-                <span class="tag">The Tradition</span>
-                <h2>A Christmas Dance</h2>
-                <p>Traditionally, Sakuting was performed during the Christmas season.</p>
-                <p>Groups of young men and women would perform the dance from house to house in the town plaza, receiving "Aguinaldo" (gifts of money or food) in return.</p>
+                <h2>The Fishermen's Joy</h2>
+                <p>Fishermen celebrate a good catch by swinging lighted lamps in cloths, creating circles of light.</p>
             </div>
         </div>
 
+        <!-- 24. Binasuan -->
+        <div class="slide slide-hero" style="background-image: linear-gradient(rgba(231,111,81,0.8), rgba(231,111,81,0.8)), url('https://images.unsplash.com/photo-1526346698789-22fd84314424?auto=format&fit=crop&w=1280&q=80');">
+            <h1>Binasuan</h1>
+            <h2>Drinking Glass Dance</h2>
+        </div>
+
+        <!-- 25. Wine Balance -->
         <div class="slide slide-split">
-            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1506806732259-39c2d0268443?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1516214104703-d2507810168b?auto=format&fit=crop&w=800&q=80');"></div>
             <div class="split-content">
-                <h2 class="section-title">The Wooden Sticks</h2>
-                <p>Dancers use two wooden sticks, usually made of rattan, to rhythmically strike each other's sticks.</p>
-                <p>The choreography portrays the historical skirmishes between the Christian lowlanders and the non-Christian mountain tribes, ending in unity.</p>
+                <h2 class="section-title">Pangasinan's Pride</h2>
+                <p>Dancers balance wine glasses filled with liquid. They roll on the floor without spilling a drop!</p>
             </div>
         </div>
 
-        <div class="slide slide-glass" style="background-image: url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80');">
-            <div class="glass-box">
-                <span class="tag">Bonus Dance</span>
-                <h2>Itik-Itik</h2>
-                <p>Another famous rural dance from Surigao! A young woman named Kanang was dancing at a baptismal party.</p>
-                <p>She spontaneously began imitating the movements of an "itik" (duck) wading in the mud and splashing water. The crowd loved it, and a new dance was born!</p>
-            </div>
-        </div>
-
-        <!-- SLIDES 29-30: Conclusion -->
-        <div class="slide slide-hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1518552796181-4229124430f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1280&q=80');">
-            <i class="fa-solid fa-sun" style="font-size: 80px; color: var(--secondary); margin-bottom: 30px;"></i>
-            <h2 style="font-size: 60px; color: white; margin-bottom: 20px;">The Heart of the Philippines</h2>
-            <p style="color: #e0e0e0; max-width: 800px; font-size: 26px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">
-                The Rural Suite reminds us that true art and joy can be found in the simplest parts of everyday life.
-            </p>
-            <h1 style="margin-top: 50px; font-size: 50px; color: var(--secondary);">Thank You</h1>
-        </div>
-
-        <!-- AI Assistant UI -->
-        <button class="ai-fab" id="ai-fab" title="AI Co-Presenter">✨</button>
-        <div class="ai-panel" id="ai-panel">
-            <div class="ai-header">
-                <h3>✨ AI Co-Presenter</h3>
-                <button class="close-ai" id="close-ai"><i class="fa-solid fa-times"></i></button>
-            </div>
-            <div class="chat-box" id="chat-box">
-                <div class="chat-msg bot">Hello! I am your AI Co-Presenter. Ask me any audience questions, or click generate to get trivia about the current slide!</div>
-                <div class="loader" id="ai-loader"><span></span><span></span><span></span></div>
-            </div>
-            <div class="ai-actions">
-                <button class="btn-trivia" id="btn-trivia">✨ Generate Slide Trivia</button>
-                <button class="btn-trivia" id="btn-quiz" style="background: #d1ecf1; border-color: #bee5eb; color: #0c5460;">✨ Quiz the Audience</button>
-                <button class="btn-trivia" id="btn-translate" style="background: #d4edda; border-color: #c3e6cb; color: #155724;">✨ Translate to Tagalog</button>
-                <div class="ai-input-group">
-                    <input type="text" id="ai-input" placeholder="Ask a question...">
-                    <button id="ai-submit"><i class="fa-solid fa-paper-plane"></i></button>
+        <!-- 26. Instruments -->
+        <div class="slide slide-grid">
+            <h2 class="section-title">The Music</h2>
+            <div class="grid-container">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-guitar"></i></div>
+                    <div><h3>Rondalla</h3><p>String ensemble including bandurria, octavina, and laud.</p></div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-drum"></i></div>
+                    <div><h3>Percussion</h3><p>Bamboo clappers, coconut shells, and wooden drums.</p></div>
                 </div>
             </div>
         </div>
 
+        <!-- 27. Fiesta Culture -->
+        <div class="slide slide-split">
+            <div class="split-content">
+                <h2 class="section-title">Fiesta Roots</h2>
+                <p>Rural dances are most vibrant during Town Fiestas, celebrating the patron saint and a good harvest.</p>
+            </div>
+            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1601058268499-e52658b8bb88?auto=format&fit=crop&w=800&q=80');"></div>
+        </div>
+
+        <!-- 28. Significance -->
+        <div class="slide slide-glass" style="background-image: url('https://images.unsplash.com/photo-1518552796181-4229124430f1?auto=format&fit=crop&w=1280&q=80');">
+            <div class="glass-box">
+                <h2>Why It Matters</h2>
+                <p>The Rural Suite preserves the history and customs of the Filipino commoner, keeping the heritage alive.</p>
+            </div>
+        </div>
+
+        <!-- 29. Future -->
+        <div class="slide slide-split">
+            <div class="split-img" style="background-image: url('https://images.unsplash.com/photo-1508004526072-8be061309fba?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="split-content">
+                <h2 class="section-title">Modern Evolution</h2>
+                <p>Today, these dances are performed globally, showcasing Filipino talent and resilience to the world.</p>
+            </div>
+        </div>
+
+        <!-- 30. Conclusion -->
+        <div class="slide slide-hero" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1518552796181-4229124430f1?auto=format&fit=crop&w=1280&q=80');">
+            <h1 style="color: var(--secondary);">Maraming Salamat!</h1>
+            <h2>Thank you for watching.</h2>
+        </div>
     </div>
 
-    <!-- JavaScript for Slide Navigation -->
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        
-        // Update total slide count dynamically
-        document.getElementById('total-num').textContent = totalSlides;
         const counterSpan = document.getElementById('current-num');
+        const totalNum = document.getElementById('total-num');
+        
+        totalNum.textContent = slides.length;
 
         function updateSlides() {
-            slides.forEach((slide, index) => {
-                if (index === currentSlide) {
-                    slide.classList.add('active');
-                } else {
-                    slide.classList.remove('active');
-                }
-            });
+            slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
             counterSpan.textContent = currentSlide + 1;
         }
 
-        function nextSlide() {
-            if (currentSlide < totalSlides - 1) {
-                currentSlide++;
-                updateSlides();
-            }
-        }
+        function nextSlide() { if (currentSlide < slides.length - 1) { currentSlide++; updateSlides(); } }
+        function prevSlide() { if (currentSlide > 0) { currentSlide--; updateSlides(); } }
 
-        function prevSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateSlides();
-            }
-        }
-
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === ' ') {
-                nextSlide();
-            } else if (e.key === 'ArrowLeft') {
-                prevSlide();
-            }
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
         });
-
-        // --- GEMINI API INTEGRATION ---
-        const apiKey = ""; 
-        const aiFab = document.getElementById('ai-fab');
-        const aiPanel = document.getElementById('ai-panel');
-        const closeAi = document.getElementById('close-ai');
-        const chatBox = document.getElementById('chat-box');
-        const aiInput = document.getElementById('ai-input');
-        const aiSubmit = document.getElementById('ai-submit');
-        const btnTrivia = document.getElementById('btn-trivia');
-        const btnQuiz = document.getElementById('btn-quiz');
-        const btnTranslate = document.getElementById('btn-translate');
-        const loader = document.getElementById('ai-loader');
-
-        aiFab.addEventListener('click', () => aiPanel.classList.add('open'));
-        closeAi.addEventListener('click', () => aiPanel.classList.remove('open'));
-
-        function addMessage(text, sender) {
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('chat-msg', sender);
-            msgDiv.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            chatBox.insertBefore(msgDiv, loader);
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-
-        async function fetchWithRetry(url, options, retries = 5) {
-            const delays = [1000, 2000, 4000, 8000, 16000];
-            for (let i = 0; i < retries; i++) {
-                try {
-                    const response = await fetch(url, options);
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    return await response.json();
-                } catch (error) {
-                    if (i === retries - 1) throw error;
-                    await new Promise(res => setTimeout(res, delays[i]));
-                }
-            }
-        }
-
-        async function callGemini(prompt) {
-            loader.style.display = 'block';
-            chatBox.scrollTop = chatBox.scrollHeight;
-            
-            const systemInstruction = "You are an AI Co-Presenter for a presentation about Philippine Folk Dances, specifically the Rural Suite. Keep your answers concise, engaging, and to the point (2-3 sentences max). You can use emojis. Do not output markdown lists, just plain text with occasional bolding.";
-            
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-            const payload = {
-                contents: [{ parts: [{ text: prompt }] }],
-                systemInstruction: { parts: [{ text: systemInstruction }] }
-            };
-
-            try {
-                const result = await fetchWithRetry(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                
-                const responseText = result.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a response.";
-                addMessage(responseText, 'bot');
-            } catch (error) {
-                console.error("Gemini API Error:", error);
-                addMessage("Oops! My AI brain had a slight hiccup. Please try again.", 'bot');
-            } finally {
-                loader.style.display = 'none';
-            }
-        }
-
-        btnTrivia.addEventListener('click', () => {
-            const slideText = slides[currentSlide].innerText;
-            addMessage("✨ Generating trivia for the current slide...", 'user');
-            const prompt = `Based on the following content from the current slide, share a fascinating, unknown trivia fact or historical context that would amaze the audience:\n\n${slideText}`;
-            callGemini(prompt);
-        });
-
-        btnQuiz.addEventListener('click', () => {
-            const slideText = slides[currentSlide].innerText;
-            addMessage("✨ Generating a quiz question for the audience...", 'user');
-            const prompt = `Based on the following content from the current slide, generate a fun, multiple-choice quiz question to ask the audience. Include 3 options and explicitly state the correct answer at the end:\n\n${slideText}`;
-            callGemini(prompt);
-        });
-
-        btnTranslate.addEventListener('click', () => {
-            const slideText = slides[currentSlide].innerText;
-            addMessage("✨ Translating slide to Tagalog...", 'user');
-            const prompt = `Translate the main points of the following slide text into Tagalog. Keep it brief and conversational:\n\n${slideText}`;
-            callGemini(prompt);
-        });
-
-        function submitQuestion() {
-            const text = aiInput.value.trim();
-            if (!text) return;
-            addMessage(text, 'user');
-            aiInput.value = '';
-            const slideText = slides[currentSlide].innerText;
-            const prompt = `The audience asked a question: "${text}".\nAnswer this question accurately. If it relates to the current slide context provided here, use it: "${slideText}".`;
-            callGemini(prompt);
-        }
-
-        aiSubmit.addEventListener('click', submitQuestion);
-        aiInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') submitQuestion();
-        });
-
     </script>
 </body>
 </html>
